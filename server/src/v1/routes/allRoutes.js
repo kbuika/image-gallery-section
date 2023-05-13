@@ -1,11 +1,10 @@
 const express = require('express')
-require('dotenv').config();
 const router = express.Router()
 const { uploadImages } = require('../../middleware/imageUpload')
-const fs = require('fs')
+const fs = require('fs');
+const { redisRateLimiter } = require('../../middleware/rateLimiter');
 
-router.post('/images', uploadImages.array('images', 10), (req, res) => {
-    console.log(req.files)
+router.post('/images', redisRateLimiter, uploadImages.array('images', 10), (req, res) => {
   try {
     if (req.files.length <= 0) {
       return res.status(400).json({

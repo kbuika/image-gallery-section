@@ -7,8 +7,6 @@ const bodyParser = require("body-parser")
 // const corsOptions = require('../config/corsOptions');
 const checkOrigins = require('../middleware/checkOrigins');
 const allRoutes = require('../v1/routes/allRoutes');
-// const { redisRateLimiter } = require('../middleware/rateLimiter');
-
 
 // body parser configuration
 app.use(bodyParser.json());
@@ -21,13 +19,12 @@ app.use(checkOrigins);
 // Cross Origin Resource Sharing
 app.use(cors({ origin: "*" }));
 
-// app.use(redisRateLimiter)
 
 // middleware for json 
 app.use(express.json());
 
 app.get('/', (req, res) => {
-    res.json("Hello test")
+    res.json("Hello from the server side...")
 })
 
 // health check end point
