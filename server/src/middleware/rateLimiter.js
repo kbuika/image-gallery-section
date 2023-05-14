@@ -4,9 +4,9 @@ const moment = require("moment");
 const redisClient = redis.createClient();
 redisClient.on("error", (err) => console.log("Redis error: ", err));
 
-const WINDOW_SIZE_IN_HOURS =1;
-const MAX_WINDOW_REQUEST_COUNT=100;
-const WINDOW_LOG_INTERVAL_IN_HOURS =1;
+const WINDOW_SIZE_IN_HOURS = 24;
+const MAX_WINDOW_REQUEST_COUNT= 500;
+const WINDOW_LOG_INTERVAL_IN_HOURS = 1;
 redisClient.connect();
 
 const redisRateLimiter = async ( req, res, next ) => {

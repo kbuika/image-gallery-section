@@ -9,8 +9,9 @@ const checkOrigins = require('../middleware/checkOrigins');
 const allRoutes = require('../v1/routes/allRoutes');
 
 // body parser configuration
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json({ limit: '50mb'}));
+app.use(bodyParser.urlencoded({ extended: true, limit: '50mb' }));
+app.use(express.json({limit: '50mb'}));
 
 // Handle options credentials check - before CORS!
 // and fetch cookies credentials requirement
@@ -29,7 +30,9 @@ app.get('/', (req, res) => {
 
 // health check end point
 app.get('/health', (req, res) => {
-    res.json({ status: 'API is healthy' });
+    res.status(200).json({
+        message: 'API is healthy',
+      })
 });
 
 // Function to serve all static files
