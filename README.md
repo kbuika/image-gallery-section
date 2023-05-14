@@ -76,11 +76,15 @@ To run the application here are some major prerequisites
 
 For the server, run:
 
+```bash 
     cd server && npm install
+```
 
 For the web-app, run 
 
+```bash
     cd web-app && npm install
+```
 
 #### Running the applications 
 
@@ -88,11 +92,15 @@ Once you get into the directory you want by `` cd [server or web-app]  ``
 
 for the server, run:
 
+```bash
     npm start 
+```
 
 and for the web app, run:
 
+```bash
     npm run dev 
+```
 
 
 #### Environment variables
