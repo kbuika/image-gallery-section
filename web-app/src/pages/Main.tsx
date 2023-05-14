@@ -1,7 +1,7 @@
 import { ChangeEvent } from "react";
 import useFetch from "../hooks/useFetch";
 import Image from "../images/image.png";
-import Image1 from "../images/image1.png";
+// import Image1 from "../images/image1.png";
 import Image2 from "../images/image2.png";
 import Image3 from "../images/image3.png";
 import Image4 from "../images/image4.png";
