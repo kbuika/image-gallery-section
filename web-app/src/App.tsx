@@ -1,4 +1,4 @@
-import './App.css'
+import './App.scss'
 import { createBrowserRouter } from 'react-router-dom'
 import Main from './pages/Main'
 import NotFound from './pages/NotFound'

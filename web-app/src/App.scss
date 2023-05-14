@@ -1,0 +1,131 @@
+$white: #ffffff;
+$techBlack: #191919;
+$approveGreen: #96e697;
+$alarmYellow: #fffb94;
+$warmGray: #c7c5c3;
+$connectTint: #c9cbff;
+$connectBlue: #4a52ff;
+$midnightPurple: #222647;
+
+#root {
+  height: auto;
+  width: auto;
+}
+
+.container {
+  min-height: 100vh;
+  min-width: 100vw;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  background-color: $techBlack;
+  color: $white;
+}
+
+.content-div {
+  margin: 98px 71px;
+}
+
+.cards-div {
+  display: flex;
+  flex-flow: row wrap;
+  div {
+    height: auto;
+    width: auto;
+    background-color: $connectBlue;
+    margin: 10px;
+    border-radius: 5px;
+    align-self: flex-start;
+    position: relative;
+
+    img {
+      max-width: 100%;
+      max-height: 100%;
+      border-radius: 5px;
+      display: flex;
+      object-fit: cover;
+    }
+  }
+}
+
+#title-div {
+  width: 30em;
+  background-color: unset !important;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  h1 {
+    margin-left: 20px;
+    line-height: 44px;
+    letter-spacing: -0.04em;
+    font-size: 28px;
+    font-weight: 400;
+  }
+}
+
+.text-on-image-div {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: $white;
+}
+
+#button-div {
+  background-color: unset !important;
+  label {
+    margin: 0 0 0 0.5em;
+    background-color: $connectBlue;
+    color: $white;
+    border: none;
+    border-radius: 15px;
+    padding: 0.5em 1em;
+    font-size: 1em;
+    font-weight: 600;
+    cursor: pointer;
+  }
+}
+
+.image-grid {
+  display: grid;
+  grid-gap: 10px;
+  grid-template-columns: repeat(auto-fit, minmax(auto, 1fr));
+  grid-auto-flow: dense;
+  width: 100vw;
+  background-color: #4a52ff;
+
+  .image-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2em;
+    color: white;
+    font-family: helvetica;
+    height: auto;
+    width: auto;
+
+    img {
+      min-width: 100%;
+      min-height: 100%;
+      object-fit: cover;
+    }
+  }
+}
+
+input[type="file"] {
+  display: none;
+}
+
+.not-found-div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  width: 100vw;
+
+  h2 {
+    font-size: 2em;
+    font-weight: 700;
+  }
+}

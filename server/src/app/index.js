@@ -7,12 +7,11 @@ const bodyParser = require("body-parser")
 // const corsOptions = require('../config/corsOptions');
 const checkOrigins = require('../middleware/checkOrigins');
 const allRoutes = require('../v1/routes/allRoutes');
-// const { redisRateLimiter } = require('../middleware/rateLimiter');
-
 
 // body parser configuration
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json({ limit: '50mb'}));
+app.use(bodyParser.urlencoded({ extended: true, limit: '50mb' }));
+app.use(express.json({limit: '50mb'}));
 
 // Handle options credentials check - before CORS!
 // and fetch cookies credentials requirement
@@ -21,18 +20,19 @@ app.use(checkOrigins);
 // Cross Origin Resource Sharing
 app.use(cors({ origin: "*" }));
 
-// app.use(redisRateLimiter)
 
 // middleware for json 
 app.use(express.json());
 
 app.get('/', (req, res) => {
-    res.json("Hello test")
+    res.json("Hello from the server side...")
 })
 
 // health check end point
 app.get('/health', (req, res) => {
-    res.json({ status: 'API is healthy' });
+    res.status(200).json({
+        message: 'API is healthy',
+      })
 });
 
 // Function to serve all static files
@@ -43,3 +43,5 @@ app.use('/public/images', express.static('images'));
 app.use('/api/v1/kisi-test', allRoutes);
 
 app.listen(process.env.PORT, () => console.log(`Server running on ${process.env.PORT} ...`));
+
+module.exports = app;
