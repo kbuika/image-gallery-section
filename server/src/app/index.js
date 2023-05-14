@@ -40,3 +40,5 @@ app.use('/public/images', express.static('images'));
 app.use('/api/v1/kisi-test', allRoutes);
 
 app.listen(process.env.PORT, () => console.log(`Server running on ${process.env.PORT} ...`));
+
+module.exports = app;

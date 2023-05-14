@@ -5,13 +5,8 @@ const fs = require('fs');
 const { redisRateLimiter } = require('../../middleware/rateLimiter');
 
 router.post('/images', redisRateLimiter, uploadImages.array('images', 10), (req, res) => {
+  console.log(req.files)
   try {
-    if (req.files.length <= 0) {
-      return res.status(400).json({
-        message: 'You must select at least 1 image.',
-      })
-    }
-
     return res.status(201).json({
       message: 'Images uploaded successfully',
       data: req.files,
