@@ -9,6 +9,7 @@
   </h3>
 </div>
 
+<p align="center">Please note the API is running on a free tier and so the request may take longer than expected</p>
 
 ## Project Structure
 

@@ -70,7 +70,7 @@ const Main = () => {
           data.map(
             (item: ItemData) => (
               <div className="mosaic" key={item?.image}>
-                <img src={item?.image} />
+                <img src={item?.image} alt={item?.article?.title}/>
                 <div className="text-on-image-div"><div>{item?.article?.title}</div></div>
                 <div className="content">
                   <div id="article-div">
