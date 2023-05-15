@@ -5,6 +5,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { errorAlert, successAlert } from "../utils";
 import ErrorComponent from "../components/Error";
 import LoadingComponent from "../components/Loading";
+import ArrowIcon from "../assets/icons/right-arrow.png";
 
 
 const Main = () => {
@@ -63,13 +64,15 @@ const Main = () => {
               article: { title: string; description: string };
             }) => (
               <div className="mosaic">
-                <img src={item?.image} />
+                <img src={item?.image} alt={item?.article?.title} className="main-image"/>
+                <div className="text-on-image-div"><div>{item?.article?.title}</div></div>
                 <div className="content">
                   <div id="article-div">
                     <h1>{item?.article?.title}</h1>
                     <p>{item?.article?.description}</p>
                   </div>
                 </div>
+                <div className="right-arrow-div"><img src={ArrowIcon} alt="right arrow"/></div>
               </div>
             )
           )}

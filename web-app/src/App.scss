@@ -54,23 +54,27 @@ $midnightPurple: #222647;
 
 .text-on-image-div {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  top: 0;
+  left: 0;
   color: $white;
+  margin: 18px 0 0 18px;
 }
 
 #button-div {
   background-color: unset !important;
   label {
-    margin: 0 0 0 0.5em;
+    height: 32px;
+    width: 98px;
     background-color: $connectBlue;
     color: $white;
     border: none;
     border-radius: 15px;
-    padding: 0.5em 1em;
     font-size: 1em;
     font-weight: 600;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     cursor: pointer;
   }
 }
@@ -119,6 +123,28 @@ input[type="file"] {
     width: 98%;
   }
 }
+@media (min-width: 800px) and (max-width: 1100px) {
+  #gallery {
+    grid-template: repeat(3, 1fr) / repeat(3, 1fr);
+    height: auto;
+  }
+
+  #title-div {
+    height: 10em;
+  }
+
+  #gallery > div:nth-child(6n + 1) {
+    grid-column: span 1;
+    grid-row: span 1;
+  }
+
+  #gallery > div:nth-child(2) {
+    grid-column: span 1;
+    grid-row: span 1;
+  }
+}
+
+
 #gallery > div:nth-child(6n + 1) {
   grid-column: span 2;
   grid-row: span 2;
@@ -142,14 +168,16 @@ input[type="file"] {
   width: 100%;
   min-height: 100%;
   transition: all ease 1s;
-}
-#gallery > div:hover img {
-  filter: blur(4px);
+  border-radius: 3px;
+  position: relative;
+
 }
 
 #gallery > div {
   overflow: hidden;
   position: relative;
+  border-radius: 3px;
+
 }
 #gallery div {
   display: flex;
@@ -158,8 +186,22 @@ input[type="file"] {
   text-decoration: none;
 }
 
+
 .mosaic {
   position: relative;
+}
+
+.mosaic::after {
+  content: '';
+  position: absolute;
+  width: 100%; 
+  height:100%;
+  top:0; 
+  left:0;
+  background:rgba(4, 0, 0, 0.6);
+  opacity: .3;
+  transition: all 1s;
+  -webkit-transition: all 1s;
 }
 
 .content {
@@ -197,4 +239,13 @@ input[type="file"] {
 
 .mosaic:hover .content {
   top: 0;
+}
+
+.right-arrow-div {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  height: 12px;
+  width: 8px;
+  margin: 0 28px 26px 0;
 }
