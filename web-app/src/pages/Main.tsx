@@ -8,6 +8,15 @@ import LoadingComponent from "../components/Loading";
 import ArrowIcon from "../assets/icons/right-arrow.png";
 
 
+interface ItemData {
+  image: string;
+  article: {
+    title: string;
+    description: string;
+  };
+}
+
+
 const Main = () => {
   const { data, loading, error, refetch } = useFetch(
     import.meta.env.VITE_API_BASE_URL + "/images"
@@ -59,12 +68,9 @@ const Main = () => {
         </div>
         {data &&
           data.map(
-            (item: {
-              image: string;
-              article: { title: string; description: string };
-            }) => (
-              <div className="mosaic">
-                <img src={item?.image} alt={item?.article?.title} className="main-image"/>
+            (item: ItemData) => (
+              <div className="mosaic" key={item?.image}>
+                <img src={item?.image} />
                 <div className="text-on-image-div"><div>{item?.article?.title}</div></div>
                 <div className="content">
                   <div id="article-div">
