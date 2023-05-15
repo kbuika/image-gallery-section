@@ -114,8 +114,14 @@ input[type="file"] {
     width: auto;
   }
   #gallery > div {
-    width: 48%;
+    width: 98%;
     margin: 1%;
+  }
+
+  #article-div {
+    p {
+      display: none;
+    }
   }
 }
 @media (max-width: 800px) and (max-width: 350px) {
