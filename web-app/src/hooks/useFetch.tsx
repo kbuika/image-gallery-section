@@ -1,4 +1,6 @@
 import { useState, useEffect } from "react";
+import axios from "axios";
+import { errorAlert } from "../utils";
 
 interface Data {
   image: string;
@@ -24,13 +26,22 @@ const useFetch = (url: string): HookResult => {
   useEffect(() => {
     async function fetchData() {
       setLoading(true);
+      const config = {
+        method: "get",
+        url: url,
+        headers: {
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Origin": "*",
+        },
+        mode: "no-cors",
+      };
 
       try {
-        const response = await fetch(url);
-        const json = await response.json();
-        setData(json);
+        const response = await axios(config);
+        setData(response.data);
       } catch (error: unknown) {
         setError(error);
+        errorAlert("An error occured while fetching data, please try again later.");
       }
 
       setLoading(false);
