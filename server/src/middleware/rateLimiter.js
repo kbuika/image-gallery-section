@@ -2,7 +2,7 @@ require('dotenv').config();
 const redis = require("redis");
 const moment = require("moment");
 
-const redisClient = redis.createClient();
+const redisClient = redis.createClient({ socket: {host: 'localhost', port: 6379}});
 redisClient.on("error", (err) => console.log("Redis error: ", err));
 
 const WINDOW_SIZE_IN_HOURS = 24;

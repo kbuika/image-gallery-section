@@ -2,9 +2,10 @@ const express = require('express')
 const router = express.Router()
 const { uploadImages } = require('../../middleware/imageUpload')
 const fs = require('fs');
-const { redisRateLimiter } = require('../../middleware/rateLimiter');
+// const { redisRateLimiter } = require('../../middleware/rateLimiter');
+// deactivated rate limiter since it requires additional configuration
 
-router.post('/images', redisRateLimiter, uploadImages.array('images', 10), (req, res) => {
+router.post('/images', uploadImages.array('images', 10), (req, res) => {
   try {
 
     if (!req.files) {

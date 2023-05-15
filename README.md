@@ -49,7 +49,7 @@ Within the root of the server, there are other directories
 
 - GET "/images" - This route is responsible for fetching all the images in the /images directory, it also reads all the articles in /data/articles.json and creates a file "associated-images.json" that is stored in the /data directory. This generated file contains an array of objects of the structure ``{image: "image url", article: {title: "article title", description: "article description"}}``. This file is what is read and its content is returned as the desired data.
 
-- POST "/images" - This routes accepts multiple images and uploads them into the /images directory.
+- POST "/images" - This routes accepts multiple images and uploads them into the /images directory. ( This route had a rate-limiter middleware but I had to remove it since it required additional configuration )
 
 
 
