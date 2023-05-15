@@ -1,18 +1,16 @@
 import { ChangeEvent } from "react";
 import useFetch from "../hooks/useFetch";
-import Image from "../images/image.png";
-// import Image1 from "../images/image1.png";
-import Image2 from "../images/image2.png";
-import Image3 from "../images/image3.png";
-import Image4 from "../images/image4.png";
-import Image5 from "../images/image5.png";
-import Image6 from "../images/image6.png";
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { errorAlert, successAlert } from "../utils";
+import ErrorComponent from "../components/Error";
+import LoadingComponent from "../components/Loading";
+
 
 const Main = () => {
   const { data, loading, error, refetch } = useFetch(
     import.meta.env.VITE_API_BASE_URL + "/images"
   );
-  console.log(data, "data");
 
   const handleAddImages = (
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -43,81 +41,54 @@ const Main = () => {
       );
 
       if (response.status === 200 || response.status === 201) {
-        console.log("Images uploaded successfully");
-      } else {
-        console.log("Error uploading images");
+        successAlert("Images uploaded successfully");
       }
     } catch (error) {
-      console.log(error);
+      errorAlert("An error occured while uploading images");
     }
   };
 
-  if (loading) return <div>Loading...</div>;
-  if (error) return <div>Error...</div>;
+  if (loading) return <LoadingComponent />;
+  if (error) return <ErrorComponent />;
   return (
     <div className="container">
-      <div className="content-div">
-        <div className="cards-div">
-          <div id="title-div">
-            <h1>Connect people &amp; spaces</h1>
-          </div>
-          <div>
-            <img src={Image2} alt="seemless" />
-            <div className="text-on-image-div">
-              <p>something something</p>
-            </div>
-          </div>
-          <div>
-            <img src={Image} alt="seemless" />
-            <div className="text-on-image-div">
-              <p>something something</p>
-            </div>
-          </div>
-          <div>
-            <img src={Image2} alt="seemless" />
-            <div className="text-on-image-div">
-              <p>something something</p>
-            </div>
-          </div>
-          <div>
-            <img src={Image3} alt="seemless" />
-            <div className="text-on-image-div">
-              <p>something something</p>
-            </div>
-          </div>
-          <div>
-            <img src={Image4} alt="seemless" />
-            <div className="text-on-image-div">
-              <p>something something</p>
-            </div>
-          </div>
-          <div>
-            <img src={Image5} alt="seemless" />
-            <div className="text-on-image-div">
-              <p>something something</p>
-            </div>
-          </div>
-          <div>
-            <img src={Image6} alt="seemless" />
-            <div className="text-on-image-div">
-              <p>something something</p>
-            </div>
-          </div>
-          <div id="button-div">
-            <label className="button" htmlFor="upload">
-              Button
-            </label>
-            <input
-              name="marketingImages"
-              id="upload"
-              type="file"
-              multiple
-              accept="image/png, image/jpeg"
-              onChange={(e) => handleAddImages(e)}
-            />
-          </div>
+      <div id="gallery">
+        <div id="title-div">
+          <h1>Connect people &amp; spaces</h1>
         </div>
+        {data &&
+          data.map(
+            (item: {
+              image: string;
+              article: { title: string; description: string };
+            }) => (
+              <div className="mosaic">
+                <img src={item?.image} />
+                <div className="content">
+                  <div id="article-div">
+                    <h1>{item?.article?.title}</h1>
+                    <p>{item?.article?.description}</p>
+                  </div>
+                </div>
+              </div>
+            )
+          )}
+        <div id="button-div">
+          <label className="button" htmlFor="upload">
+            Button
+          </label>
+          <input
+            name="marketingImages"
+            id="upload"
+            type="file"
+            multiple
+            accept="image/png, image/jpeg"
+            onChange={(e) => handleAddImages(e)}
+          />
+        </div>
+        
       </div>
+      <ToastContainer />
     </div>
   );
 };
