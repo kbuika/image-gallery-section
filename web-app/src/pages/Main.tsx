@@ -27,10 +27,18 @@ const Main = () => {
   ) => {
     const files = (e.target as HTMLInputElement).files;
     if (!files) return;
-    const selectedFiles = Array.from(files).filter((file) =>
-      file.type.startsWith("image/")
+    const selectedFiles = Array.from(files).filter((file): File | undefined => {
+      if(file.name.match(/\.(jpg|jpeg|png)$/) == null) {
+        errorAlert("Please select valid images");
+        return;
+      }
+      return file;
+    }
     );
-
+    if(selectedFiles.length === 0){
+      errorAlert("Please select valid images");
+      return;
+    }
     uploadImages(selectedFiles);
     refetch();
   };

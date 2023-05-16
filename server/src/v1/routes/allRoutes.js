@@ -13,6 +13,14 @@ router.post('/images', uploadImages.array('images', 10), (req, res) => {
         message: 'No files uploaded',
       })
     }
+    for (const file of req.files) {
+      if (!file.originalname.match(/\.(jpg|jpeg|png)$/)) {
+        // upload only png and jpg format
+        return res.status(400).json({
+          message: 'Only image files are allowed!',
+        })
+      }
+    }
     return res.status(201).json({
       message: 'Images uploaded successfully',
       data: req.files,
